@@ -7,8 +7,7 @@
 // address space: 216 locations (16-bit addresses)
 // addressability: 16 bits
 # define MEMORY_SIZE (1 << 16)
-// extand the sign value if the bit is 1; else don't
-# define SIGN_EXTAND(val, bits)((val >> (bits - 1)) & 1 ? (val | 0xFFFF << bits) : val)
+
 // Registers
 // eight general-purpose registers: R0 - R7
 // PC (program counter), condition codes
@@ -62,23 +61,10 @@ enum
 };
 
 // ops:
-void op_BR();
-void op_ADD();
-void op_LD();
-void op_ST();
-void op_JSR();
-void op_AND();
-void op_LDR();
-void op_STR();
-void op_RTI();
-void op_NOT();
-void op_LDI();
-void op_STI();
-void op_JMP();
-void op_RES();
-void op_LEA();
-void op_TRAP();
+void opBr();
+void opAdd();
 
-void    UpdateCondReg(uint16_t *reg);
-
+void		printDebug();
+void		UpdateCondReg(uint16_t *reg);
+uint16_t	signExtend(uint16_t val, uint8_t bits);
 #endif

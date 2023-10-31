@@ -1,80 +1,28 @@
 #include "archi.h"
-#include <stdlib.h>
 
 extern uint16_t registers[];
 extern uint16_t memory[];
 
-void op_BR(){
+void    opBr(){
+    //15     12       9                 0
+    // | 0000 | N Z P |     PCoffset    |
+    uint8_t Flags = (registers[IR] >> 9) & 0x7; // | N Z P |
+    uint16_t pcOffset = registers[IR] & 0x1FF; 	// | PCoffset |
 
-}
-// 15    12    9     6 5 4    3     0
-//  |0001 | DS | SR1 | 0 | 00 | SR2 | >> DS = SR1 + SR2;
-//  |0001 | DS | SR1 | 1 |   Imm    | >> DR = SR1 + Imm;
-void op_ADD(){
-    char isImmidiateMode, dist, src1, src2;
-
-    isImmidiateMode = registers[IR] >> 5 & 0b1;
-    dist = registers[IR] >> 9 & 0b111;
-    src1 = registers[IR] >> 6 & 0b111;
-    if (isImmidiateMode)
-        registers[dist] = registers[src1] + SIGN_EXTAND(registers[IR] & 0x1f, 5);
-    else
-        registers[dist] = registers[src1] + registers[registers[IR] & 7];
-    UpdateCondReg(&registers[dist]);
+    if (registers[COND] & Flags)
+        registers[PC] += signExtend(pcOffset, 9);
 }
 
-void op_LD(){
+void    opAdd(){
+    //15     12    9     6   5    3     0
+    // | 0001 | DR | SR1 | 0 | 00 | SR2 | // mode 0 DR = SR1 + SR2;
+    // | 0001 | DR | SR1 | 1 |    Imm   | // mode 1 DR = SR1 + Imm;
+    uint8_t dr, sr1;
 
-}
-
-void op_ST(){
-
-}
-
-void op_JSR(){
-
-}
-
-void op_AND(){
-
-}
-
-void op_LDR(){
-
-}   
-           
-void op_STR(){
-
-}   
-           
-void op_RTI(){
-
-}
-
-void op_NOT(){
-
-}
-
-void op_LDI(){
-
-}
-
-void op_STI(){
-
-}
-
-void op_JMP(){
-
-}
-
-void op_RES(){
-
-}
-
-void op_LEA(){
-
-}
-
-void op_TRAP(){
-
+	dr = (registers[IR] >> 9) & 0x7;
+	sr1 = (registers[IR] >> 6) & 0x7;
+	if ((registers[IR] >> 5) & 0x1)
+		registers[dr] = registers[sr1] + signExtend(registers[IR] & 0x1f, 5);
+	else
+		registers[dr] = registers[sr1] + registers[registers[IR] & 0x7];
 }
