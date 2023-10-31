@@ -1,5 +1,7 @@
 #include "archi.h"
 
+extern uint16_t registers[];
+
 // extand the sign value if the bit is 1; else don't
 uint16_t signExtend(uint16_t val, uint8_t bits){
 	if (val >> (bits - 1) & 1)

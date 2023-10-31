@@ -25,7 +25,7 @@ uint16_t    read_memory(uint16_t address){
 int main(int ac, char **av){
     int op;
 	if (ac != 2)
-		return ;
+		return 1;
 	loadProgram(av[1]);
     // initialization
     registers[PC] = 0x3000;
