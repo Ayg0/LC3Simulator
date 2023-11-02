@@ -12,7 +12,7 @@ understanding computer architecture ? Let's emulate one
 [ ] op_ST  
 [X] op_JSR  
 [X] op_AND  
-[ ] op_LDR  
+[X] op_LDR  
 [ ] op_STR  
 [ ] op_RTI  
 [ ] op_NOT  

@@ -86,6 +86,17 @@ void opLDI(){
     updateCondReg(registers[DR]); 
 }
 
+void opLDR(){
+    //15     12    9       6            0
+    // | 0110 | DR | BaseR |   Offset   | // mode 1 DR = mem[BaseR + offset];
+        uint8_t DR, BaseR;
+
+	DR = (registers[IR] >> 9) & 0x7;
+	BaseR = (registers[IR] >> 6) & 0x7;
+    registers[DR] = *getMemory(registers[BaseR] + signExtend(registers[IR] & 0x3f, 6));
+    updateCondReg(registers[DR]);
+}
+
 void    opTMP(){
     
 };

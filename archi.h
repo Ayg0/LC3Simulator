@@ -69,6 +69,7 @@ void    opJSR();
 void    opTMP();
 void    opLD();
 void    opLDI();
+void    opLDR();
 
 void		printDebug();
 void        updateCondReg(uint16_t reg);
