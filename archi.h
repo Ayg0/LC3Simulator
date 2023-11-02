@@ -61,9 +61,11 @@ enum
 };
 
 // ops:
-void opBr();
-void opAdd();
-void opAnd();
+void opBR();
+void opADD();
+void opAND();
+void opJMP();
+void opJSR();
 void opTMP();
 
 void		printDebug();

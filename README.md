@@ -10,7 +10,7 @@ understanding computer architecture ? Let's emulate one
 [X] op_ADD
 [ ] op_LD
 [ ] op_ST
-[ ] op_JSR
+[X] op_JSR
 [X] op_AND
 [ ] op_LDR
 [ ] op_STR
@@ -18,7 +18,7 @@ understanding computer architecture ? Let's emulate one
 [ ] op_NOT
 [ ] op_LDI	
 [ ] op_STI
-[ ] op_JMP
+[X] op_JMP
 [ ] op_RES
 [ ] op_LEA
 [ ] op_TRAP

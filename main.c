@@ -2,12 +2,16 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <unistd.h>
 
 uint16_t memory[MEMORY_SIZE];
 uint16_t registers[R_COUNT];
 uint8_t  HLT_FLAG = 1;
 void (*ops[])() = {
-    opBr, opAdd, opTMP, opTMP, opTMP, opAnd,
+    opBR,  opADD, opTMP, opTMP, // 0000 => 0011 // 0  => 3
+    opJSR, opAND, opTMP, opTMP, // 0100 => 0111 // 4  => 7
+    opTMP, opTMP, opTMP, opTMP, // 1000 => 1011 // 8  => 11
+    opJMP, opTMP, opTMP, opTMP, // 1100 => 1111 // 12 => 15
     };
 
 uint16_t    read_memory(uint16_t address){
@@ -15,6 +19,8 @@ uint16_t    read_memory(uint16_t address){
 }
 int main(int ac, char **av){
     int op;
+
+    int c;
 	if (ac != 2)
 		return 1;
 	loadProgram(av[1]);
@@ -23,7 +29,7 @@ int main(int ac, char **av){
     while(registers[PC] < 0xFFFF){
         // fetch
         registers[IR] = read_memory(registers[PC]);
-        registers[PC]++;
+        registers[PC] += 1;
         // decode
         op = registers[IR] >> 12;
         // execution
