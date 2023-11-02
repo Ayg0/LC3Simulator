@@ -11,7 +11,7 @@ understanding computer architecture ? Let's emulate one
 [ ] op_LD
 [ ] op_ST
 [ ] op_JSR
-[ ] op_AND
+[X] op_AND
 [ ] op_LDR
 [ ] op_STR
 [ ] op_RTI

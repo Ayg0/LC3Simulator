@@ -12,11 +12,20 @@ uint16_t signExtend(uint16_t val, uint8_t bits){
 uint16_t toLittleEnd(uint16_t val){
     return (val << 8) | (val >> 8);
 }
+// update the condition register
+void    updateCondReg(uint16_t reg){
+    if (reg  == 0)
+        registers[COND] = FL_ZER;
+    else if (reg >> 15)
+        registers[COND] = FL_NEG;
+    else
+        registers[COND] = FL_POS;
+}
 
 void	printDebug(){
 	for (uint8_t i = 0; i < 8; i++)
-		printf("R%d: %X\n", i, registers[i]);
-	printf("PC: %X\n", registers[PC]);
-	printf("IR: %X\n", registers[IR]);
-	printf("COND: %X\n", registers[COND]);
+		printf("R%d:   0x%X\n", i, registers[i]);
+	printf("PC:   0x%X\n", registers[PC]);
+	printf("IR:   0x%X\n", registers[IR]);
+	printf("COND: 0x%X\n\n", registers[COND]);
 }

@@ -63,9 +63,11 @@ enum
 // ops:
 void opBr();
 void opAdd();
+void opAnd();
+void opTMP();
 
 void		printDebug();
-void		UpdateCondReg(uint16_t *reg);
+void        updateCondReg(uint16_t reg);
 uint8_t		loadProgram(char *programLocation);
 uint16_t	toLittleEnd(uint16_t val);
 uint16_t	signExtend(uint16_t val, uint8_t bits);
