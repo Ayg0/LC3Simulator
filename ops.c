@@ -66,6 +66,26 @@ void opJSR(){
         registers[PC] = registers[(registers[IR] >> 6) & 0x7];
 }
 
+void opLD(){
+    //15     12      9                   0
+    // | 0010 |  DR  |     PcOffset      | // mode 0 DR = mem[PC + PcOffset] ;
+    uint8_t DR;
+
+    DR = (registers[IR] >> 9) & 0x7;
+    registers[DR] = *getMemory(registers[PC] + signExtend(registers[IR] & 0x1ff, 9));
+    updateCondReg(registers[DR]); 
+}
+
+void opLDI(){
+    //15     12      9                   0
+    // | 1010 |  DR  |     PcOffset      | // mode 0 DR = mem[mem[PC + PcOffset]] ;
+    uint8_t DR;
+
+    DR = (registers[IR] >> 9) & 0x7;
+    registers[DR] = *getMemory(*getMemory(registers[PC] + signExtend(registers[IR] & 0x1ff, 9)));
+    updateCondReg(registers[DR]); 
+}
+
 void    opTMP(){
     
 };

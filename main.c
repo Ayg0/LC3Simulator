@@ -8,9 +8,9 @@ uint16_t memory[MEMORY_SIZE];
 uint16_t registers[R_COUNT];
 uint8_t  HLT_FLAG = 1;
 void (*ops[])() = {
-    opBR,  opADD, opTMP, opTMP, // 0000 => 0011 // 0  => 3
+    opBR,  opADD, opLD, opTMP, // 0000 => 0011 // 0  => 3
     opJSR, opAND, opTMP, opTMP, // 0100 => 0111 // 4  => 7
-    opTMP, opTMP, opTMP, opTMP, // 1000 => 1011 // 8  => 11
+    opTMP, opTMP, opLDI, opTMP, // 1000 => 1011 // 8  => 11
     opJMP, opTMP, opTMP, opTMP, // 1100 => 1111 // 12 => 15
     };
 

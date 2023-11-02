@@ -1,6 +1,7 @@
 #include "archi.h"
 
 extern uint16_t registers[];
+extern uint16_t memory[];
 
 // extand the sign value if the bit is 1; else don't
 uint16_t signExtend(uint16_t val, uint8_t bits){
@@ -20,6 +21,10 @@ void    updateCondReg(uint16_t reg){
         registers[COND] = FL_NEG;
     else
         registers[COND] = FL_POS;
+}
+
+uint16_t *getMemory(uint16_t address){
+	return (&memory[address]);
 }
 
 void	printDebug(){

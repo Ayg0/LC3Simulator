@@ -61,16 +61,19 @@ enum
 };
 
 // ops:
-void opBR();
-void opADD();
-void opAND();
-void opJMP();
-void opJSR();
-void opTMP();
+void    opBR();
+void    opADD();
+void    opAND();
+void    opJMP();
+void    opJSR();
+void    opTMP();
+void    opLD();
+void    opLDI();
 
 void		printDebug();
 void        updateCondReg(uint16_t reg);
 uint8_t		loadProgram(char *programLocation);
 uint16_t	toLittleEnd(uint16_t val);
 uint16_t	signExtend(uint16_t val, uint8_t bits);
+uint16_t    *getMemory(uint16_t address);
 #endif
