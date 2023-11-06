@@ -27,13 +27,24 @@ void enableRawMode() {
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
 }
 
-int main(int ac, char **av){
-    int op, c;
+uint8_t checkParams(int32_t ac, char **av, uint8_t *mode){
+    if (ac < 2 || ((ac == 3) && strcmp(av[1], "-d"))){
+        fprintf(stderr, "Bad params\nUsage: ./lc3Vm [-d] objFile\n");
+        return 1;
+    }
+    if (!strcmp(av[1], "-d"))
+        *mode = 1;
+    return 0;
+}
 
-	if (ac != 2)
-		return 1;
+int main(int32_t ac, char **av){
+    uint8_t op, c, mode;
+
     enableRawMode();
-	loadProgram(av[1]);
+	if (checkParams(ac, av, &mode))
+        return 1;
+    if (loadProgram(av[1 + mode]))
+        return 2;
     // initialization
     registers[PC] = 0x3000;
     while(registers[PC] < 0xFFFF){
@@ -43,8 +54,11 @@ int main(int ac, char **av){
         // decode
         op = registers[IR] >> 12;
         // execution
-        // read(1, &c,1);
-        // printDebug();
         ops[op]();
+        if (mode){
+            printDebug();
+            read(1, &c, 1);
+        }
     }
+    return 0;
 }

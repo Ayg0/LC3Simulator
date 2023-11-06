@@ -4,9 +4,6 @@ extern uint16_t registers[];
 extern uint16_t memory[];
 
 void    trapGetC(){
-    // uint8_t c = 0;
-
-    // read(1, &c, 1);
     registers[R0] = getchar();
     updateCondReg(R0);
 }

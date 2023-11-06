@@ -8,8 +8,10 @@ uint8_t	loadProgram(char *programLocation){
 	FILE		*file;
 
 	file = fopen(programLocation, "rb");
-    if (!file)
-		return 0;
+    if (!file){
+        fprintf(stderr, "Sure about that file ?\n");
+        return 1;
+    }
     fread(&origin, sizeof(uint16_t), 1, file); // read first 16 bits to know where to load the program
     origin = toLittleEnd(origin); // need to turn everything to little endian notation
 

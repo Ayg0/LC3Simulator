@@ -28,9 +28,11 @@ uint16_t *getMemory(uint16_t address){
 }
 
 void	printDebug(){
+	printf("\n------------- Debug INFO --------------\n");
 	for (uint8_t i = 0; i < 8; i++)
 		printf("R%d:   0x%X\n", i, registers[i]);
 	printf("PC:   0x%X\n", registers[PC]);
 	printf("IR:   0x%X\n", registers[IR]);
-	printf("COND: 0x%X\n\n", registers[COND]);
+	printf("COND: 0x%X\n", registers[COND]);
+	printf("-------------    END    --------------\n");
 }
