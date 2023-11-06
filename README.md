@@ -16,11 +16,11 @@ understanding computer architecture ? Let's emulate one
 [X] op_AND  
 [X] op_LDR  
 [X] op_STR  
-[~] op_RTI  
+[//] op_RTI  
 [X] op_NOT  
 [X] op_LDI  
 [X] op_STI  
 [X] op_JMP  
-[~] op_RES  
+[//] op_RES  
 [X] op_LEA  
 [X] op_TRAP  
