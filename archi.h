@@ -70,6 +70,13 @@ void    opTMP();
 void    opLD();
 void    opLDI();
 void    opLDR();
+void    opLEA();
+void    opNOT();
+void    opRTI();
+void    opST();
+void    opSTI();
+void    opSTR();
+void    opTRAP();
 
 void		printDebug();
 void        updateCondReg(uint16_t reg);

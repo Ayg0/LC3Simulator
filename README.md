@@ -9,16 +9,16 @@ understanding computer architecture ? Let's emulate one
 [X] op_BR  
 [X] op_ADD  
 [X] op_LD  
-[ ] op_ST  
+[X] op_ST  
 [X] op_JSR  
 [X] op_AND  
 [X] op_LDR  
-[ ] op_STR  
-[ ] op_RTI  
-[ ] op_NOT  
+[X] op_STR  
+[~] op_RTI  
+[X] op_NOT  
 [X] op_LDI  
-[ ] op_STI  
+[X] op_STI  
 [X] op_JMP  
 [ ] op_RES  
-[ ] op_LEA  
+[X] op_LEA  
 [ ] op_TRAP  

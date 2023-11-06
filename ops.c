@@ -37,15 +37,15 @@ void    opAND(){
 	dr = (registers[IR] >> 9) & 0x7;
 	sr1 = (registers[IR] >> 6) & 0x7;
 	if ((registers[IR] >> 5) & 0x1)
-		registers[dr] = registers[sr1] + signExtend(registers[IR] & 0x1f, 5);
+		registers[dr] = registers[sr1] & signExtend(registers[IR] & 0x1f, 5);
 	else
-		registers[dr] = registers[sr1] + registers[registers[IR] & 0x7];
+		registers[dr] = registers[sr1] & registers[registers[IR] & 0x7];
     updateCondReg(registers[dr]);
 }
 
 void    opJMP(){
     //15     12     9       6           0
-    // | 1100 | 000 | BaseR |           | // mode 0 PC = BaseR;
+    // | 1100 | 000 | BaseR |           | // PC = BaseR;
     uint8_t base;
 
     base = (registers[IR] >> 6) & 0x7;
@@ -68,7 +68,7 @@ void opJSR(){
 
 void opLD(){
     //15     12      9                   0
-    // | 0010 |  DR  |     PcOffset      | // mode 0 DR = mem[PC + PcOffset] ;
+    // | 0010 |  DR  |     PcOffset      | // DR = mem[PC + PcOffset] ;
     uint8_t DR;
 
     DR = (registers[IR] >> 9) & 0x7;
@@ -78,7 +78,7 @@ void opLD(){
 
 void opLDI(){
     //15     12      9                   0
-    // | 1010 |  DR  |     PcOffset      | // mode 0 DR = mem[mem[PC + PcOffset]] ;
+    // | 1010 |  DR  |     PcOffset      | // DR = mem[mem[PC + PcOffset]] ;
     uint8_t DR;
 
     DR = (registers[IR] >> 9) & 0x7;
@@ -88,14 +88,77 @@ void opLDI(){
 
 void opLDR(){
     //15     12    9       6            0
-    // | 0110 | DR | BaseR |   Offset   | // mode 1 DR = mem[BaseR + offset];
-        uint8_t DR, BaseR;
+    // | 0110 | DR | BaseR |   Offset   | // DR = mem[BaseR + offset];
+    uint8_t DR, BaseR;
 
 	DR = (registers[IR] >> 9) & 0x7;
 	BaseR = (registers[IR] >> 6) & 0x7;
     registers[DR] = *getMemory(registers[BaseR] + signExtend(registers[IR] & 0x3f, 6));
     updateCondReg(registers[DR]);
 }
+
+void    opLEA(){
+    //15     12    9                    0
+    // | 1110 |  DR  |     PcOffset     | DR = PC + PcOffset
+    uint8_t DR;
+
+	DR = (registers[IR] >> 9) & 0x7;
+    registers[DR] = registers[PC] + signExtend(registers[IR] & 0x1ff, 9);
+    updateCondReg(registers[DR]);
+};
+
+void    opNOT(){
+    //15     12    9     6            0
+    // | 0110 | DR | SRC |            | // DR = NOT(SRC);
+    uint8_t DR, SRC;
+
+	DR = (registers[IR] >> 9) & 0x7;
+	SRC = (registers[IR] >> 6) & 0x7;
+    registers[DR] = ~(registers[SRC]);
+    updateCondReg(registers[DR]);
+};
+// NOT YET MADE
+void    opRTI(){
+    printf("opRTI Didn't make it yet !!\nSorry future self . . .\n");
+    exit(7);
+}
+
+void    opST(){
+    //15     12      9                   0
+    // | 0011 |  SR  |     PcOffset      | // mem[PC + PcOffset] = SR ;
+    uint8_t SR;
+
+    SR = (registers[IR] >> 9) & 0x7;
+    *getMemory(registers[PC] + signExtend(registers[IR] & 0x1ff, 9)) = registers[SR];
+}
+
+void    opSTI(){
+    //15     12      9                   0
+    // | 1011 |  SR  |     PcOffset      | // mem[mem[PC + PcOffset]] = SR;
+    uint8_t SR;
+    uint16_t pcOffset;
+
+    SR = (registers[IR] >> 9) & 0x7;
+    pcOffset = signExtend(registers[IR] & 0x1ff, 9);
+    *getMemory(*getMemory(registers[PC] + pcOffset)) = registers[SR];
+}
+
+void    opSTR(){
+    //15     12    9       6            0
+    // | 0111 | SR | BaseR |   Offset   | // mem[BaseR + offset] = SR;
+    uint8_t SR, BaseR;
+
+	SR = (registers[IR] >> 9) & 0x7;
+	BaseR = (registers[IR] >> 6) & 0x7;
+    *getMemory(registers[BaseR] + signExtend(registers[IR] & 0x3f, 6)) = registers[SR];
+}
+
+void    opTRAP(){
+    //15     12      8                  0
+    // | 0111 |      |      TRAPVECT8   | // mem[BaseR + offset] = SR;
+    registers[R7] = registers[PC];
+    
+};
 
 void    opTMP(){
     
