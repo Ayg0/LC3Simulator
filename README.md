@@ -5,6 +5,8 @@ understanding computer architecture ? Let's emulate one
 - https://www.cs.utexas.edu/users/fussell/courses/cs310h/lectures/Lecture_10-310h.pdf
 - https://www.jmeiners.com/lc3-vm/#-lc3.c-block-99
 - https://www.youtube.com/watch?v=CDO28Esqmcg&list=PLhwVAYxlh5dvB1MkZrcRZy6x_a2yORNAu
+- https://jupyter.brynmawr.edu/services/public/dblank/CS240%20Computer%20Organization/2015-Fall/Notes/LC-3%20I-O.ipynb
+- https://www.cs.unca.edu/~brock/classes/Spring2009/ece109/Lectures/Examples
 ## Progress:
 [X] op_BR  
 [X] op_ADD  
@@ -19,6 +21,6 @@ understanding computer architecture ? Let's emulate one
 [X] op_LDI  
 [X] op_STI  
 [X] op_JMP  
-[ ] op_RES  
+[~] op_RES  
 [X] op_LEA  
-[ ] op_TRAP  
+[X] op_TRAP  
