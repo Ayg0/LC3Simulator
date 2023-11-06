@@ -1,7 +1,10 @@
 # ifndef ARCHI_H
 # define ARCHI_H
-#include <stdio.h>
-#include <stdint.h>
+# include <stdio.h>
+# include <stdint.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <termios.h>
 
 // Memory
 // address space: 216 locations (16-bit addresses)
@@ -77,6 +80,13 @@ void    opST();
 void    opSTI();
 void    opSTR();
 void    opTRAP();
+// traps:
+void    trapGetC();
+void    trapOut();
+void    trapPuts();
+void    trapIn();
+void    trapPutp();
+void    trapHalt();
 
 void		printDebug();
 void        updateCondReg(uint16_t reg);

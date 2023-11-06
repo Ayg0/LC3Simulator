@@ -155,8 +155,31 @@ void    opSTR(){
 
 void    opTRAP(){
     //15     12      8                  0
-    // | 0111 |      |      TRAPVECT8   | // mem[BaseR + offset] = SR;
+    // | 0111 |      |      TRAPVECT8   | // do that;
     registers[R7] = registers[PC];
+    uint8_t trapVector = registers[IR] & 0xFF;
+    switch (trapVector)
+    {
+    case 0x20:
+        trapGetC();
+        break;
+    case 0x21:
+        trapOut();
+        break;
+    case 0x22:
+        trapPuts();
+        break;
+    case 0x23:
+        trapIn();
+        break;
+    case 0x24:
+        trapPutp();
+        break;
+    case 0x25:
+        trapHalt();
+    default:
+        break;
+    }
     
 };
 

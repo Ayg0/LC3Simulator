@@ -1,12 +1,10 @@
 #include "archi.h"
-#include <stdint.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
 
 uint16_t memory[MEMORY_SIZE];
 uint16_t registers[R_COUNT];
 uint8_t  HLT_FLAG = 1;
+struct termios origTermios;
+
 void (*ops[])() = {
     opBR,  opADD, opLD, opST, // 0000 => 0011 // 0  => 3
     opJSR, opAND, opLDR, opSTR, // 0100 => 0111 // 4  => 7
@@ -17,12 +15,24 @@ void (*ops[])() = {
 uint16_t    read_memory(uint16_t address){
     return memory[address];
 }
-int main(int ac, char **av){
-    int op;
+void disableRawMode(){
+  tcsetattr(STDIN_FILENO, TCSAFLUSH, &origTermios);
+}
 
-    int c;
+void enableRawMode() {
+  tcgetattr(STDIN_FILENO, &origTermios);
+  atexit(disableRawMode);
+  struct termios raw = origTermios;
+  raw.c_lflag &= ~(ECHO | ICANON);
+  tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw);
+}
+
+int main(int ac, char **av){
+    int op, c;
+
 	if (ac != 2)
 		return 1;
+    enableRawMode();
 	loadProgram(av[1]);
     // initialization
     registers[PC] = 0x3000;
@@ -33,10 +43,8 @@ int main(int ac, char **av){
         // decode
         op = registers[IR] >> 12;
         // execution
-        if (op == 0b1111){
-            printDebug();
-            return (printf("PROGRAMM HALTED\n"));
-        }
+        // read(1, &c,1);
+        // printDebug();
         ops[op]();
     }
 }
