@@ -16,12 +16,12 @@ understanding computer architecture ? Let's emulate one
 ```
 - Running in default Mode:
 ```
-    ./lc3Vm examples/Image
+    ./lc3Sim examples/Image
 ```
 
 - Running in Debug Mode:
 ```
-    ./lc3Vm -d examples/Image ;; you can step by pressing any key
+    ./lc3Sim -d examples/Image ;; you can step by pressing any key
 ```
 ### Running Programs ? How ?:
 - In the example folder you'll find rogue and 2048 games I downloaded from:

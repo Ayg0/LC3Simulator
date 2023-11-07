@@ -29,7 +29,7 @@ void enableRawMode() {
 
 uint8_t checkParams(int32_t ac, char **av, uint8_t *mode){
     if (ac < 2 || ((ac == 3) && strcmp(av[1], "-d"))){
-        fprintf(stderr, "Bad params\nUsage: ./lc3Vm [-d] objFile\n");
+        fprintf(stderr, "Bad params\nUsage: ./lc3Sim [-d] objFile\n");
         return 1;
     }
     if (!strcmp(av[1], "-d"))

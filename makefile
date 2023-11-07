@@ -1,4 +1,4 @@
-NAME = lc3Vm
+NAME = lc3Sim
 
 CC = gcc 
 
