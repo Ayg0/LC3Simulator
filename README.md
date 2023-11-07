@@ -14,14 +14,23 @@ understanding computer architecture ? Let's emulate one
 ```
     make
 ```
-### Running Programms ? How ?:
+- Running in default Mode:
+```
+    ./lc3Vm examples/Image
+```
+
+- Running in Debug Mode:
+```
+    ./lc3Vm -d examples/Image ;; you can step by pressing any key
+```
+### Running Programs ? How ?:
 - In the example folder you'll find rogue and 2048 games I downloaded from:
->> [LC3Vm-HowTo]https://www.jmeiners.com/lc3-vm/#-lc3.c-block-99
-- Also you can find the Image which I wrote and compiled inside:
->> [lc3Emulator]https://wchargin.com/lc3web/
-- I would incourage you to write your own programms and test maybe you can find some bugs ...
+>> [LC3Vm-HowTo](https://www.jmeiners.com/lc3-vm/#-lc3.c-block-99)
+- Also, you can find the 'Image' that I wrote and compiled inside:
+>> [lc3Emulator](https://wchargin.com/lc3web/)
+- I would encourage you to write your own programs and test maybe you can find some bugs ...
 ### Looks cool How can I make one ?:
-- The pdf inside the repo has all the specific details you need to know to make this, test with the emulator and if you got stuck you can go for the tutorial (I don't advice you to go full in into tutorials).
+- The pdf inside the repo has all the specific details you need to know to make this, test with the emulator and if you get stuck you can go for the tutorial (I don't advise you to go full into tutorials without testing your limits).
 ## Progress:
 **Implemented => X**  
 **Unused => //**  
