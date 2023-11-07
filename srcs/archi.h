@@ -63,6 +63,12 @@ enum
     FL_ZER = 1 << 1, /* Z */
     FL_NEG = 1 << 2, /* N */
 };
+// memory mapped reg
+enum
+{
+    MR_KBSR = 0xFE00, /* keyboard status */
+    MR_KBDR = 0xFE02  /* keyboard data */
+};
 
 // ops:
 void    opBR();
