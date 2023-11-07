@@ -8,6 +8,8 @@ understanding computer architecture ? Let's emulate one
 - https://jupyter.brynmawr.edu/services/public/dblank/CS240%20Computer%20Organization/2015-Fall/Notes/LC-3%20I-O.ipynb
 - https://www.cs.unca.edu/~brock/classes/Spring2009/ece109/Lectures/Examples
 ## Progress:
+**Implemented => X**  
+**Unused => //**  
 [X] op_BR  
 [X] op_ADD  
 [X] op_LD  
