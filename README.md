@@ -23,7 +23,9 @@ understanding computer architecture ? Let's emulate one
 ### Looks cool How can I make one ?:
 - The pdf inside the repo has all the specific details you need to know to make this, test with the emulator and if you got stuck you can go for the tutorial (I don't advice you to go full in into tutorials).
 ## Progress:
-[X] op_BR
+**Implemented => X**  
+**Unused => //**  
+[X] op_BR  
 [X] op_ADD  
 [X] op_LD  
 [X] op_ST  
