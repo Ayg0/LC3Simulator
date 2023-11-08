@@ -18,8 +18,8 @@ clean:
 		$(RM) $(OBJS)
 
 fclean: clean
-		$(RM) $(NAME) bin
+		$(RM) $(NAME)
 
-re: fclean bin
+re: fclean
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

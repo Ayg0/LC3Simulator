@@ -20,7 +20,7 @@ void    trapPuts(){
     uint16_t index;
 
     index = registers[R0];
-    while (memory[index] && index != MEMORY_SIZE){
+    while (index < MEMORY_SIZE && memory[index]){
         if (memory[index] == '\n')
             write(1, "\r\n", 2);
         else
@@ -41,7 +41,7 @@ void    trapPutp(){
     uint8_t first, second;
 
     index = registers[R0];
-    while (memory[index] && index != MEMORY_SIZE){
+    while (index < MEMORY_SIZE && memory[index]){
         first = memory[index] & 0xff;
         write(1, &first, 1);
         if ((second = (memory[index] >> 8)))
